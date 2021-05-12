@@ -1,0 +1,12 @@
+{% block title %}Alterar{% endblock title %}
+{% block content %}
+<form action="{% url 'produtos:alterar_produto' produto.pk%}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+
+    <button type="submit">SAlvar</button>
+
+</form>
+
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos{% endblock title %}
+
+{% block content %}
+<a href="{% url 'produtos:novo_produto' %}">Novo Produto</a>
+
+<table>
+    <thead>
+        <tr>
+            <td>Produto</td>
+            <td>Cor</td>
+            <td>Preço</td>
+            <td>Quantidade</td>
+            <td>Modificado</td>
+
+
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.cor.cor }}</td>
+            <td>{{ produto.preco }}</td>
+            <td>{{ produto.quantidade }}</td>
+            <td>{{ produto.modificado }}</td>
+            <td>
+                <a href="{% url 'produtos:deleta_produto' produto.pk %}">deletar</a>
+            </td>
+            <td>
+                <a href="{% url 'produtos:alterar_produto' produto.pk %}">Alterar</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+
+
+    </tbody>
+
+</table>
+
+
+{% endblock content %}
+
+
+{% block js %}
+
+{% endblock js %}
