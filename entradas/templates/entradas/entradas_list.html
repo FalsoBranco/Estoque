@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Entradas{% endblock title %}
+
+{% block content %}
+<a href="{% url 'entradas:nova_entrada' %}">Nova Entrada</a>
+
+<table class="table is-striped">
+    <thead>
+        <tr>
+            <td>Produto</td>
+            <td>Quantidade</td>
+            <td>Preço</td>
+            <td>Quantidade Total</td>
+            <td>Modificado</td>
+
+
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for entrada in entradas %}
+        <tr>
+            <td>{{ entrada.produto.nome }}</td>
+            <td>{{ entrada.quantidade }}</td>
+            <td>{{ entrada.preco }}</td>
+            <td>{{ entrada.produto.quantidade }}</td>
+            <td>{{ entrada.modificado }}</td>
+            <td>
+                <a href="{% url 'entradas:deleta_entrada' entrada.pk %}">deletar</a>
+            </td>
+            {% comment %} <td>
+                <a href="{% url 'produtos:alterar_produto' produto.pk %}">Alterar</a>
+            </td> {% endcomment %}
+        </tr>
+
+        {% endfor %}
+
+
+
+    </tbody>
+
+</table>
+
+<a href="{% url 'entradas:index' %}">Voltar</a>
+
+
+
+
+
+{% endblock content %}
+
+
+{% block js %}
+
+{% endblock js %}

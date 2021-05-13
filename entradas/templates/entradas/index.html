@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Entradas{% endblock title %}
+{% block content %}
+<p>
+    <a href="{% url 'entradas:lista_entradas' %}">Entradas</a>
+</p>
+
+
+<p>
+    <a href="{% url 'index' %}">Pagina inicial</a>
+</p>
+
+
+
+
+{% endblock content %}
+{% block js %}
+
+<script>
+
+
+</script>
+
+{% endblock js %}

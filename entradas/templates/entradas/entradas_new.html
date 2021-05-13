@@ -1,0 +1,12 @@
+{% block title %}Novo{% endblock title %}
+{% block content %}
+<form action="{% url 'entradas:nova_entrada' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+
+    <button type="submit">SAlvar</button>
+
+</form>
+
+{% endblock content %}
