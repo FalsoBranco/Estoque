@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}index{% endblock title %}
-{% block content %}content index page
+{% block title %} Produtos{% endblock title %}
+{% block content %}
+<p>
+    <a href="{% url 'produtos:lista_produtos' %}">Produtos</a>
+</p>
 
 
-<a href="{% url 'produtos:lista_produtos' %}">Produtos</a>
-
-
-
-
+<p>
+    <a href="{% url 'index' %}">Pagina inicial</a>
+</p>
 
 
 
 
 {% endblock content %}
-{% block js %}js index{% endblock js %}
+{% block js %}
+
+<script>
+
+
+</script>
+
+{% endblock js %}

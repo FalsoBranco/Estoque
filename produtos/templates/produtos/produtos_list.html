@@ -5,7 +5,7 @@
 {% block content %}
 <a href="{% url 'produtos:novo_produto' %}">Novo Produto</a>
 
-<table>
+<table class="table is-striped">
     <thead>
         <tr>
             <td>Produto</td>
@@ -41,6 +41,11 @@
     </tbody>
 
 </table>
+
+<a href="{% url 'produtos:index' %}">Voltar</a>
+
+
+
 
 
 {% endblock content %}
