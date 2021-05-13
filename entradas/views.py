@@ -46,7 +46,7 @@ class EntradaDeleteView(DeleteView):
     def get(self, *args, **kwargs):
         entrada = Entrada.objects.get(pk=self.kwargs.get("pk"))
         entrada.produto.quantidade -= entrada.quantidade
-        entrada.produto.save()
+        entrada.produto.save_base()
         return self.post(*args, **kwargs)
 
 

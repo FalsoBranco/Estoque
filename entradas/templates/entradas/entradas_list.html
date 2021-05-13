@@ -5,7 +5,7 @@
 {% block content %}
 <a href="{% url 'entradas:nova_entrada' %}">Nova Entrada</a>
 
-<table class="table is-striped">
+<table id="table_id" class="table">
     <thead>
         <tr>
             <td>Produto</td>
@@ -13,6 +13,7 @@
             <td>Preço</td>
             <td>Quantidade Total</td>
             <td>Modificado</td>
+            <td>Ações</td>
 
 
         </tr>
@@ -27,11 +28,15 @@
             <td>{{ entrada.produto.quantidade }}</td>
             <td>{{ entrada.modificado }}</td>
             <td>
+
+
                 <a href="{% url 'entradas:deleta_entrada' entrada.pk %}">deletar</a>
+
+
+                <a href="{% url 'produtos:alterar_produto' entrada.pk %}">Alterar</a>
+
             </td>
-            {% comment %} <td>
-                <a href="{% url 'produtos:alterar_produto' produto.pk %}">Alterar</a>
-            </td> {% endcomment %}
+
         </tr>
 
         {% endfor %}
@@ -52,5 +57,9 @@
 
 
 {% block js %}
-
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
 {% endblock js %}
