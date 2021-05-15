@@ -6,6 +6,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
+from produtos.forms import ProdutoForm
 from produtos.models import Produto
 
 # Create your views here.
@@ -24,7 +25,7 @@ class ProdutosListView(ListView):
 class ProdutoCreateView(CreateView):
     model = Produto
     template_name = "produtos/produto_new.html"
-    fields = ["nome", "cor", "descricao", "preco", "quantidade"]
+    form_class = ProdutoForm
     success_url = reverse_lazy("produtos:lista_produtos")
 
 
@@ -40,7 +41,7 @@ class ProdutoDeleteView(DeleteView):
 class ProdutoUpdateView(UpdateView):
     model = Produto
     template_name = "produtos/produto_update.html"
-    fields = ["nome", "cor", "descricao", "preco", "quantidade"]
+    form_class = ProdutoForm
     success_url = reverse_lazy("produtos:lista_produtos")
 
     # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
