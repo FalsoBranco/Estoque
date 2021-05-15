@@ -1,7 +1,4 @@
-from typing import Any, Dict
-
 from django.forms.models import BaseModelForm
-from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -9,6 +6,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
+from entradas.forms import EntradaForm
 from entradas.models import Entrada
 
 # Create your views here.
@@ -28,8 +26,8 @@ class EntradaListView(ListView):
 # ! TODO Procurar formas melhores de fazer esse update no foreing key
 class EntradaCreateView(CreateView):
     model = Entrada
-    template_name = "entradas/entradas_new.html"
-    fields = ["produto", "preco", "quantidade"]
+    template_name = "entradas/entrada_new.html"
+    form_class = EntradaForm
     success_url = reverse_lazy("entradas:lista_entradas")
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
@@ -50,12 +48,16 @@ class EntradaDeleteView(DeleteView):
         return self.post(*args, **kwargs)
 
 
-# ? TODO FAZER O UPDATE
-# ? PEGAR A QUANTIDADE TOTAL DOS PRODUTO
-# ? SUBTRAIR DA ENTRADA ANTIGA
-# ? ADICIONAR A ENTRADA NOVA
 class EntradaUpdateView(UpdateView):
     model = Entrada
-    fields = ["produto", "preco", "quantidade"]
+    form_class = EntradaForm
     template_name = "entradas/entrada_update.html"
     success_url = reverse_lazy("entradas:lista_entradas")
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+
+        form.instance.produto.quantidade = (
+            form.instance.produto.quantidade - form.initial.get("quantidade")
+        ) + form.instance.quantidade
+        form.instance.produto.save_base()
+        return super().form_valid(form)
