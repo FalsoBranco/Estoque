@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block title %}Alterar{% endblock title %}
 {% block content %}
 <form action="{% url 'entradas:alterar_entrada' entrada.pk%}" method="post">

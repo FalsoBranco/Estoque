@@ -1,4 +1,5 @@
-{% block title %}Novo{% endblock title %}
+{% extends 'base.html' %}
+{% block title %} Produtos{% endblock title %}
 {% block content %}
 <form action="{% url 'produtos:novo_produto' %}" method="post">
     {% csrf_token %}
