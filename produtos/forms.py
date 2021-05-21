@@ -18,6 +18,13 @@ class ProdutoForm(forms.ModelForm):
             ),
             "cor": forms.Select(attrs={"class": "select"}),
             "descricao": forms.Textarea(attrs={"class": "textarea"}),
-            "preco": forms.NumberInput(attrs={"class": "input"}),
+            "preco": forms.NumberInput(
+                attrs={
+                    "class": "input",
+                    "min": "0",
+                    "placeholder": "Preço do Produto",
+                    "step": "0.01",
+                }
+            ),
             "quantidade": forms.NumberInput(attrs={"class": "input"}),
         }
