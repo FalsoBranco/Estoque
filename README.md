@@ -1,2 +1,2 @@
 # ProjetoEstoque
-Faculdade
+Pequeno projeto de estoque Utilizando CBV
