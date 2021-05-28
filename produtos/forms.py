@@ -8,6 +8,13 @@ class ProdutoForm(forms.ModelForm):
         model = Produto
         fields = ["nome", "cor", "descricao", "preco", "quantidade"]
         labels = {"nome": "Produto"}
+        help_texts = {
+            "nome": "Nome do produto que deseja adicionar",
+            "cor": "Cor do produto",
+            "descricao": "Uma breve descrição do produto",
+            "preco": "Preço do produto",
+            "quantidade": "quantidade disponivel",
+        }
         widgets = {
             "nome": forms.TextInput(
                 attrs={
