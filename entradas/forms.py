@@ -8,7 +8,11 @@ class EntradaForm(forms.ModelForm):
     class Meta:
         model = Entrada
         fields = ["produto", "preco", "quantidade"]
-
+        help_texts = {
+            "produto": "Escolha o produto de entrada",
+            "preco": "Preço da nota de entrada",
+            "quantidade": "Quantidade da entrada",
+        }
         widgets = {
             "produto": widgets.Select(),
             "preco": widgets.NumberInput(

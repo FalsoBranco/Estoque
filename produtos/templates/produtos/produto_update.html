@@ -5,17 +5,22 @@
     {% csrf_token %}
     {% for field in form %}
     {% if field.name == "preco" %}
-    <label for="{{field.auto_id}}" class="label">{{ field.label }}</label>
-    <div class="field has-addons">
+    <div class="field">
+        <label for="{{ field.aut_id }}" class="label">{{ field.label }}</label>
         <p class="control">
-            <a class="button is-static">
-                R$
-            </a>
-        </p>
-        <p class="control">
-            {{field}}
-        </p>
+            <div class="field has-addons">
+                <p class="control">
+                    <a href="" class="button is-static">
+                        R$
+                    </a>
+                </p>
+                <p class="control">
+                    {{ field }}
+                </p>
 
+            </div>
+        </p>
+        <p class="help is-info">{{ field.help_text }}</p>
     </div>
 
     {% else %}
@@ -26,12 +31,16 @@
             <div class="select">
 
                 {{field}}
+
             </div>
 
             {% else %}
+
             {{field}}
+
             {% endif %}
         </div>
+        <p class="help is-info">{{ field.help_text }}</p>
     </div>
 
     {% endif %}
@@ -43,7 +52,7 @@
             <button class="button is-link">Enviar</button>
         </div>
         <div class="control">
-            <button class="button is-link is-light">
+            <button class="button is-link is-light ml-3">
                 <a href="{% url 'produtos:lista_produtos' %}">Cancelar</a>
             </button>
         </div>
