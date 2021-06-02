@@ -22,4 +22,5 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="index.html"), name="index"),
     path("produtos/", include("produtos.urls", namespace="produtos")),
     path("entradas/", include("entradas.urls", namespace="entradas")),
+    path("saidas/", include("saidas.urls", namespace="saidas")),
 ]
