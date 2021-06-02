@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Saidas
+
+{% endblock title %}
+
+
+{% block content %}
+<p>
+    <a href="{% url 'saidas:lista_saidas' %}">Saidas</a>
+</p>
+<p>
+    <a href="{% url 'index' %}">Pagina inicial</a>
+</p>
+
+{% endblock content %}
+{% block js %}{% endblock js %}

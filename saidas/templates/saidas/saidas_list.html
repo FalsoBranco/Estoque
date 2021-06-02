@@ -1,0 +1,45 @@
+{% extends 'saidas/index.html' %}
+
+
+{% block title %}Saidas{% endblock title %}
+
+
+{% block content %}
+<a href="{% url 'saidas:nova_saida' %}">Nova Saida</a>
+
+<table id="saidas_table" class="table display">
+    <thead>
+        <tr>
+            <td>Produto</td>
+            <td>Quantidade</td>
+            <td>Preço</td>
+            <td>Quantidade Total</td>
+            <td>Modificado</td>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for saida in saidas %}
+        <tr>
+            <td>{{ saida.produto.nome }}</td>
+            <td>{{ saida.quantidade }}</td>
+            <td>{{ saida.preco }}</td>
+            <td>{{ saida.produto.quantidade }}</td>
+            <td>{{ saida.modificado }}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'saidas:index' %}">Voltar</a>
+{% endblock content %}
+
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('#saidas_table').DataTable();
+    });
+</script>
+{% endblock js %}
