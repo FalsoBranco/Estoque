@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from typing import Any
+from typing import Any, Dict
 
 from django.forms.models import BaseModelForm
 from django.http.request import HttpRequest
@@ -32,12 +32,8 @@ class SaidaCreateView(CreateView):
     form_class = SaidaForm
     success_url = reverse_lazy("saidas:lista_saidas")
 
-    def get(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-        print(request.POST)
-        return super().get(request, *args, **kwargs)
-
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        print(form.instance.quantidade)
-        print(form.instance.produto.quantidade)
-        form.instance.preco = 1
+        form.instance.produto.quantidade -= form.instance.quantidade
+        form.instance.preco = form.instance.produto.preco
+        form.instance.produto.save()
         return super().form_valid(form)
