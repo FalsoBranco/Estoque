@@ -10,11 +10,12 @@
 <table id="saidas_table" class="table display">
     <thead>
         <tr>
+            <td>Modificado</td>
             <td>Produto</td>
             <td>Quantidade</td>
             <td>Preço</td>
-            <td>Quantidade Total</td>
-            <td>Modificado</td>
+            <td>Quantidade Restante</td>
+            <td>Ação</td>
 
         </tr>
 
@@ -22,11 +23,12 @@
     <tbody>
         {% for saida in saidas %}
         <tr>
+            <td>{{ saida.modificado }}</td>
             <td>{{ saida.produto.nome }}</td>
             <td>{{ saida.quantidade }}</td>
             <td>{{ saida.preco }}</td>
             <td>{{ saida.produto.quantidade }}</td>
-            <td>{{ saida.modificado }}</td>
+            <td><a href="{% url 'saidas:deleta_saida' saida.pk %}">deletar</a></td>
         </tr>
 
         {% endfor %}
